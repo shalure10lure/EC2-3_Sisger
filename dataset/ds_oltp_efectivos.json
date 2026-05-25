@@ -1,0 +1,19 @@
+{
+	"name": "ds_oltp_efectivos",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_oltp_fuerzas_armadas",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "origen"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "oltp",
+			"table": "tbl_efectivos"
+		}
+	}
+}
