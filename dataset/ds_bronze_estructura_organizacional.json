@@ -1,0 +1,19 @@
+{
+	"name": "ds_bronze_estructura_organizacional",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "bronze"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "bronze",
+			"table": "tbl_estructura_organizacional"
+		}
+	}
+}
