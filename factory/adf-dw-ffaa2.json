@@ -1,0 +1,10 @@
+{
+	"name": "adf-dw-ffaa2",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Enabled",
+			"editable": true
+		}
+	},
+	"location": "centralus"
+}
