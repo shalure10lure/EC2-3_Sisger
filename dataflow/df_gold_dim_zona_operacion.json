@@ -1,0 +1,39 @@
+{
+	"name": "df_gold_dim_zona_operacion",
+	"properties": {
+		"folder": {
+			"name": "gold"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_silver_tbl_zonas",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          id_zona as integer,",
+				"          nombre as string,",
+				"          departamento as string,",
+				"          frontera_con as string,",
+				"          tipo_terreno as string,",
+				"          altitud_msnm as integer,",
+				"          nivel_riesgo as string,",
+				"          acceso_carretero as boolean",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     query: 'SELECT DISTINCT \\n    id_zona,\\n    nombre,\\n    departamento,\\n    frontera_con,\\n    tipo_terreno,\\n    altitud_msnm,\\n    nivel_riesgo,\\n    acceso_carretero\\nFROM silver.tbl_zonas\\nWHERE id_zona IS NOT NULL',",
+				"     format: 'query') ~> source1"
+			]
+		}
+	}
+}
