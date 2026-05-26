@@ -67,6 +67,9 @@
 				},
 				{
 					"name": "select1"
+				},
+				{
+					"name": "derivedColumn1"
 				}
 			],
 			"scriptLines": [
@@ -175,13 +178,16 @@
 				"          area_km2,",
 				"          incidentes,",
 				"          observaciones,",
+				"          fecha_key,",
 				"          tipo_operacion_key,",
 				"          unidad_key,",
 				"          zona_key",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
-				"select1 sink(allowSchemaDrift: true,",
+				"select1 derive(fecha_inicio_key = toInteger(toString(fecha_inicio, 'yyyyMMdd')),",
+				"          fecha_fin_key = toInteger(toString(fecha_fin, 'yyyyMMdd'))) ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          operacion_key as integer,",
@@ -209,8 +215,8 @@
 				"     skipDuplicateMapOutputs: true,",
 				"     errorHandlingOption: 'stopOnFirstError',",
 				"     mapColumn(",
-				"          fecha_inicio_key = fecha_inicio,",
-				"          fecha_fin_key = fecha_fin,",
+				"          fecha_inicio_key,",
+				"          fecha_fin_key,",
 				"          tipo_operacion_key,",
 				"          unidad_key,",
 				"          zona_key,",
